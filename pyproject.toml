@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "t3n-mcp"
+version = "0.1.0"
+description = "Unofficial read-only MCP server for t3n (t3n.de) — Germany's well-known tech magazine: latest news, search, stories by topic and full article text via the official RSS feeds"
+readme = "README.md"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+requires-python = ">=3.10"
+dependencies = [
+    "mcp<2",
+    "httpx>=0.27",
+]
+authors = [{ name = "Mohammad Abbasi" }]
+
+[project.scripts]
+t3n-mcp = "t3n_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/t3n_mcp"]
+
+[tool.pytest.ini_options]
+markers = ["live: tests that hit the real www.t3n.de feeds"]
